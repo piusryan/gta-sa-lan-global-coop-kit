@@ -1,0 +1,50 @@
+; SA:COOP client/UI settings template (UTF-8, no personal nickname or password).
+; Copy to <game folder>/coop/coop.ini.
+; The easiest way to change these is in-game: press F9.
+[player]
+name = Player
+language = en
+skin =
+
+[connect]
+; 1 = connect automatically at game start without opening F9.
+auto_connect = 0
+; join = connect to a friend, host = create your own server.
+mode = host
+; Friend's IP, hostname, or invite code XXXX-XXXX-XXXX.
+host = 127.0.0.1
+port = 7788
+password =
+; Save slot for auto-host (0 = choose in menu).
+load_slot = 0
+friendly_fire = 0
+partner_teleport = 1
+shared_life = 0
+max_players = 2
+partner_cheats = 1
+
+[game]
+windowed = 0
+run_in_background = 1
+no_pause_menu = 1
+skip_intro = 1
+gps = 1
+mark_colour = green
+
+[voice]
+enabled = 0
+push_to_talk_key = 66
+always_on = 0
+toggle = 0
+volume = 1.0
+mic_gain = 1.0
+proximity = 1
+
+[keys]
+chat = 84
+enter_as_passenger = 71
+player_list = 113
+
+[debug]
+overlay = 0
+verbose_log = 0

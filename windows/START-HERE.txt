@@ -1,0 +1,161 @@
+================================================================
+ LAN + GLOBAL COOP KIT  -  GTA San Andreas
+ SA:COOP v0.3.4 + one-click network mode switcher
+================================================================
+
+WHAT IS IN THIS KIT
+  COPY_TO_GAME_FOLDER  - the mod + switcher. Copy its CONTENTS into your GTA folder.
+  LAN-STORY-COOP-INSTRUCTIONS.md - full gameplay guide (keys, missions, fixes).
+  REFERENCE - update notes from the mod author.
+  NOTICE.txt - important licensing / what you must NOT include.
+
+IMPORTANT
+  This kit does NOT contain GTA San Andreas. You must already own and install
+  the game yourself. Version 1.0 (US) is required by the mod.
+  Everyone playing must use the same mod version (v0.3.4, protocol 63).
+
+
+================================================================
+WINDOWS - INSTALL (about 5 minutes)
+================================================================
+1. Install GTA San Andreas 1.0 US if you have not already.
+
+2. Find your game folder. It is the folder that contains gta_sa.exe
+   (usually C:\Program Files (x86)\Rockstar Games\GTA San Andreas).
+
+3. Open THIS kit's folder "COPY_TO_GAME_FOLDER".
+
+4. Select EVERYTHING inside it:
+     coop.asi
+     install.bat
+     coop\                (whole folder)
+     Switch-Network-Mode.bat
+     Switch-Network-Mode.ps1
+     switch_network_mode.py
+     run-switcher.sh
+   Copy them.
+
+5. Paste into your GTA folder, next to gta_sa.exe.
+   If Windows asks to replace files, click Yes.
+
+6. Double-click install.bat in the GTA folder.
+   If the game is in Program Files, right-click it -> Run as administrator.
+   It installs the ASI loader. It is normal if it says "loader already installed".
+
+7. Double-click Switch-Network-Mode.bat.
+   - Choose LAN only or GLOBAL / Online.
+   - Optionally change the server name, port, players and password.
+   - Click Apply & Save (or Apply & Launch GTA).
+
+8. Start gta_sa.exe. In the main menu press F9 to open the SA:COOP window.
+
+
+================================================================
+LINUX / ARCH - INSTALL
+================================================================
+1. Install GTA San Andreas 1.0 US in a Wine prefix (the mod needs Windows
+   game files). Everyone must still have the same 1.0 US version.
+
+2. Install Python + Tk:
+     sudo pacman -S python tk
+
+3. Copy the CONTENTS of COPY_TO_GAME_FOLDER into your GTA folder
+   (the folder with gta_sa.exe), the same as Windows step 4-5.
+
+4. In the game folder, run the switcher:
+     bash run-switcher.sh
+   (or: chmod +x run-switcher.sh  then  ./run-switcher.sh)
+
+5. Pick LAN or GLOBAL, click Apply & Save, then start the game through Wine
+   and press F9 in the main menu.
+
+Note: the Windows .bat files cannot run on Linux. Use run-switcher.sh there.
+The Python switcher works on both Windows and Linux.
+
+
+================================================================
+HOW TO PLAY - LAN (same Wi-Fi / router)
+================================================================
+HOST (PC with the story save):
+  1. Mode = LAN only, Apply & Save, restart the game.
+  2. F9 -> enter nickname -> "Host a game".
+  3. Pick a save slot or New game, players = 2, Start the server.
+  4. Note the invite code and your LAN IP (shown at the bottom of the
+     switcher, or use ipconfig / ifconfig).
+
+GUEST:
+  1. F9 -> "Join a game".
+  2. Host = the host's LAN IP (example 192.168.1.2), Port = 7788.
+  3. Connect.
+
+Both PCs must be on the same router. Turn off VPNs.
+
+
+================================================================
+HOW TO PLAY - GLOBAL (friends on the internet)
+================================================================
+HOST:
+  1. Mode = GLOBAL / Online, set a password, Apply & Save, restart the game.
+  2. F9 -> "Host a game" -> Start the server.
+  3. Give friends the XXXX-XXXX-XXXX invite code shown in the window.
+     That is the easiest way. You can also give your public IP + port 7788.
+  4. Leave the game running.
+
+GUEST:
+  1. Same mod version installed.
+  2. F9 -> "Join a game".
+  3. Paste the invite code, or type the public IP and port 7788.
+  4. Connect. No LAN needed.
+
+The mod tries UPnP to open UDP 7788 automatically. If your router blocks it,
+forward UDP 7788 to the host PC in the router settings. Windows Firewall must
+allow coop\coop-server.exe and UDP 7788 (already set on many installs).
+
+If your ISP uses CGNAT (no public IP) or a friend still cannot connect, put a
+relay in the switcher's "TURN relay" box:
+  metered:<app name>:<API key>          (free metered.ca account)
+  turn:<host>:<port>:<user>:<password>  (any TURN server)
+Then Apply & Save and restart the game.
+
+Security: Global mode with an empty password lets anyone join. Use a password.
+
+
+================================================================
+GAMEPLAY BASICS
+================================================================
+  F9    SA:COOP window (host / join / language)
+  T     Chat (Enter send, Esc close)
+  B     Voice chat (hold)
+  G     Sit in nearest car as passenger
+  Y / N Yes / No (invite, teleport, start mission)
+  F2    Player list, give money/weapons
+  F4    Skins
+  F7    Hide/show mod interface
+  Enter / Esc  Skip cutscene yes/no
+
+The host starts story missions; both players stand in the marker.
+Save progress follows the host. See LAN-STORY-COOP-INSTRUCTIONS.md for details.
+
+
+================================================================
+TROUBLESHOOTING
+================================================================
+"Server does not answer"       host game not running, or wrong IP. Use the
+                               real LAN/public IP, not 127.0.0.1.
+"Nothing happens on F9"        you launched the wrong exe, or the ASI loader
+                               was not installed - run install.bat.
+Antivirus removed files        add the GTA folder to exclusions, then copy
+                               the files from this kit again.
+Different versions             everyone must be on v0.3.4 (protocol 63).
+Logs                           coop\coop.log and coop\server-data\server.log.
+Config problems                the switcher keeps a backup at
+                               coop\server.ini.bak - restore it by hand.
+
+
+================================================================
+IF YOU PUBLISH THIS KIT
+================================================================
+Zip the whole kit folder and share the ZIP. Keep NOTICE.txt inside it.
+Do NOT add gta_sa.exe, gta3.img, or the game's original DLLs to the archive.
+Tell people to extract the ZIP, then copy the contents of COPY_TO_GAME_FOLDER
+into their own legally owned GTA San Andreas 1.0 US folder.

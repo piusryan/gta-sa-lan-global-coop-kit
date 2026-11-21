@@ -1,0 +1,20 @@
+NOTICE - READ BEFORE PUBLISHING
+===============================
+
+This archive contains only mod files and helper scripts for SA:COOP v0.3.4.
+
+It does NOT contain:
+  - gta_sa.exe (the game executable)
+  - gta3.img or any original game data
+  - the game's original DLLs
+
+Users must own and install GTA San Andreas 1.0 US themselves and copy these
+files into their own game folder. Do not add game files to the archive.
+
+SA:COOP license and third-party licenses are in:
+  coop/licenses/ (inside COPY_TO_GAME_FOLDER)
+
+Network mode switcher scripts in this kit were written for this kit and are
+provided as-is, with no warranty.
+
+The mod is used at your own risk. Keep backups of your save files.

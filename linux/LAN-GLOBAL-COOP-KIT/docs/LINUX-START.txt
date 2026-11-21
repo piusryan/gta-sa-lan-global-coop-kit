@@ -1,0 +1,162 @@
+GTA SAN ANDREAS - LINUX (ARCH) START-UP INSTRUCTIONS
+===================================================
+
+Folder: "gta sa linux"
+This is a full copy of the Windows game with SA:COOP story co-op already installed.
+It runs on Arch Linux through Wine.
+
+IMPORTANT: move this folder to its FINAL location on Linux BEFORE running setup,
+because the Wine prefix stores absolute paths inside itself.
+
+
+1. INSTALL PACKAGES (Arch)
+--------------------------
+
+Enable the multilib repository first (Wine needs 32-bit libraries):
+
+    sudo nano /etc/pacman.conf
+
+Find these lines and remove the # from the beginning of both:
+
+    [multilib]
+    Include = /etc/pacman.d/mirrorlist
+
+Then install:
+
+    sudo pacman -Syu
+    sudo pacman -S wine wine-gecko wine-mono \
+      lib32-libldap lib32-gnutls lib32-alsa-lib lib32-openal \
+      lib32-libpulse lib32-mesa lib32-libx11 lib32-libxrandr
+
+Optional (better audio/music in old games):
+
+    sudo pacman -S fluidsynth lib32-fluidsynth
+
+Reboot or log out/in after the first graphics-driver/32-bit install if Wine
+complains about missing 32-bit OpenGL.
+
+
+2. FIRST-TIME SETUP INSIDE THE COPIED FOLDER
+--------------------------------------------
+
+    cd "/path/to/gta sa linux"
+    bash setup-linux.sh
+
+This makes the *.sh files executable and creates the local Wine prefix:
+
+    gta sa linux/.wine-prefix
+
+Do not delete .wine-prefix after the first game launch.
+
+
+3. RUN THE GAME
+---------------
+
+Story co-op (the whole story with your friend on LAN):
+
+    ./start-story-coop.sh
+
+If the scripts are not executable, run:
+
+    chmod +x ./*.sh
+
+
+3b. SWITCH BETWEEN LAN AND GLOBAL MODE
+--------------------------------------
+The Windows Switch-Network-Mode.bat is replaced by a native Linux script:
+
+    ./Switch-Network-Mode.sh
+
+It opens a terminal menu (or a .desktop launcher from your file manager) where
+you pick LAN or GLOBAL, edit name / port / players / password / TURN relay,
+then Apply & Save or Apply & Launch GTA. It backs up coop/server.ini to
+coop/server.ini.bak and keeps the CRLF line endings the game expects.
+
+Quick, non-interactive use:
+
+    ./Switch-Network-Mode.sh --lan           # LAN only
+    ./Switch-Network-Mode.sh --global        # play over the internet
+    ./Switch-Network-Mode.sh --status        # show current settings + LAN IP
+    ./Switch-Network-Mode.sh --global --launch
+
+Close GTA completely and start it again after changing the mode.
+
+
+4. PLAY STORY CO-OP ON LAN
+--------------------------
+
+Host PC (the one with the save):
+  1. Run ./start-story-coop.sh
+  2. In the main menu the SA:COOP window opens (or press F9). Click EN for English.
+  3. Enter your nickname.
+  4. "Host a game" tab -> choose a save or "New game" -> players: 2 -> Start the server.
+  5. Note the invite code (XXXX-XXXX-XXXX) and your LAN IP:
+
+       ip address
+
+     Example LAN IPs: 192.168.1.2 or 192.168.0.250
+
+Second PC:
+  1. Install the same packages, copy this whole folder, run bash setup-linux.sh.
+  2. Run ./start-story-coop.sh
+  3. F9 -> "Join a game" tab -> enter the host LAN IP (or invite code).
+  4. Port: 7788. Password: empty by default. Click Connect.
+
+Both PCs must use SA:COOP v0.3.3. Different versions cannot connect.
+Launch the game only with ./start-story-coop.sh (direct gta_sa.exe launch).
+
+
+5. FIREWALL ON ARCH (if the guest cannot connect)
+-------------------------------------------------
+
+Allow UDP 7788 for story co-op on the host.
+
+With ufw:
+
+    sudo pacman -S ufw
+    sudo ufw enable
+    sudo ufw allow 7788/udp
+
+With firewalld:
+
+    sudo pacman -S firewalld
+    sudo systemctl enable --now firewalld
+    sudo firewall-cmd --add-port=7788/udp --permanent
+    sudo firewall-cmd --reload
+
+Both PCs must be on the same router/LAN. Turn off VPNs.
+
+
+6. KEYS IN GAME
+---------------
+
+    F9          SA:COOP window (host / join / settings)
+    T           chat (Enter = send, Esc = close)
+    B           voice chat (hold)
+    G           sit in nearest car as passenger
+    Y / N       yes / no, start mission when in marker
+    F2          player list
+    F4          skins
+    U           animations
+    F7          hide/show interface
+
+Chat commands: /help /players /tp /tphere
+
+
+7. TROUBLESHOOTING
+------------------
+
+- "Wine: no 32-bit support" -> multilib is not enabled or lib32 packages missing.
+- Game starts but no F9 window -> check that coop.asi and coop/ are next to gta_sa.exe.
+- Black screen / graphics glitches -> try a different Wine version or add:
+
+      export WINEDEBUG=-all
+
+  before running the script, or set windowed mode (already enabled in
+  coop/coop.ini: windowed = 1).
+
+- Connection fails -> use the host LAN IP (not 127.0.0.1), check UDP 7788 firewall,
+  and make sure the host game is running with the server started in F9.
+- Logs: coop/coop.log, coop/server-data/server.log inside this folder.
+
+More details in LAN-STORY-COOP-INSTRUCTIONS.md (also included in this folder).

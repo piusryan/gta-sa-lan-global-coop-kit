@@ -1,0 +1,18 @@
+; SA:COOP server config - LAN preset (internet = 0).
+; Copy to <game folder>/coop/server.ini or run:
+;   ./create-coop-server.sh <game folder> --lan --name "My LAN Co-op"
+[server]
+name = My LAN Co-op
+port = 7788
+; Empty password is fine on a private LAN.
+password =
+max_players = 2
+host =
+motd = Welcome! Type /help for commands.
+friendly_fire = 0
+partner_teleport = 1
+shared_life = 0
+; 0 = LAN only. Friends connect with this host's LAN IP and port 7788.
+internet = 0
+; Leave empty unless a friend cannot connect over a difficult NAT.
+turn =

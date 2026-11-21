@@ -1,0 +1,20 @@
+; SA:COOP server config - GLOBAL / online preset (internet = 1).
+; Copy to <game folder>/coop/server.ini or run:
+;   ./create-coop-server.sh <game folder> --global --name "My Online Co-op" --password "secret"
+; SA:COOP detects your public IP and tries to forward UDP 7788 via UPnP.
+; A password is strongly recommended for Global games.
+[server]
+name = My Online Co-op
+port = 7788
+; CHANGE THIS before giving the invite code to anyone.
+password = CHANGE_ME
+max_players = 2
+host =
+motd = Welcome! Type /help for commands.
+friendly_fire = 0
+partner_teleport = 1
+shared_life = 0
+; 1 = internet play (UPnP, invite code shown in F9).
+internet = 1
+; Optional TURN relay: metered:<app>:<api-key> or turn:<host>:<port>:<user>:<password>
+turn =

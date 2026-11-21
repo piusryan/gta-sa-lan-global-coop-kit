@@ -1,0 +1,61 @@
+SA:COOP 0.3.4 UPDATE FOR THE WINDOWS HOST
+=========================================
+
+The Linux PC is already upgraded to 0.3.4. The Windows host must also be
+0.3.4, because 0.3.3 and 0.3.4 cannot connect to each other.
+
+WHAT TO DO ON THE WINDOWS PC
+----------------------------
+1. Close GTA SA and any SA:COOP server completely.
+2. Make a quick backup of your current GTA SA folder, or at least of:
+   coop.asi
+   coop\coop-server.exe
+   coop\coop.ini
+   vorbisFile.dll
+3. Copy the contents of this folder INTO the GTA SA folder, replacing when
+   asked. This overwrites:
+   coop.asi                        -> 0.3.4 client
+   coop\coop-server.exe            -> 0.3.4 bundled server
+   coop\loader\vorbisFile.dll      -> 0.3.4 loader
+   install.bat                     -> 0.3.4 installer (informational)
+   Инструкция.txt                  -> 0.3.4 manual
+   coop\licenses\*.txt             -> 0.3.4 licenses
+   coop\skins\sweet.dff/.txd       -> copy only, so the host can SEE the
+                                      Linux player's Sweet skin
+   vorbisFile.dll                  -> 0.3.4 ASI loader
+
+4. DO NOT run install.bat for an update. It is only for a fresh install.
+5. DO NOT copy the Linux coop.ini to Windows. Keep your Windows coop.ini,
+   world, server-data, packs, and save games.
+6. DO NOT add "skin = sweet.dff" to the Windows coop.ini. The host should
+   stay as CJ. The Linux player is the only one wearing Sweet.
+7. Delete any old SA-COOP 0.3.3 ZIP and old coop.pdb if you want; they are
+   no longer needed.
+
+ABOUT vorbisFile.dll
+--------------------
+If your Windows GTA folder already has a working ASI loader from Widescreen
+Fix, you may keep that vorbisFile.dll; any ASI loader can load the new
+coop.asi. Replacing it with the included one is also fine unless you rely on
+that particular loader. Do not run install.bat either way.
+
+VERIFY
+------
+Start the game/host on Windows and open:
+
+  coop\coop.log
+
+The first line must say:
+
+  SA:COOP 0.3.4 (protocol 63) loaded
+
+If it says 0.3.3 / protocol 54, you copied into the wrong folder.
+
+Then start the Linux PC with:
+
+  ./start-story-coop.sh
+
+Press F4 in game on Linux: the skins menu should open. Choose "sweet" under
+"your skins" and press Wear. The host will see it because the same two
+sweet files are in the host's coop\skins folder, but the host's own player
+stays CJ.

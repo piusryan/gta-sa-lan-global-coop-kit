@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=GTA SA Co-op - Network Mode Switcher
+Comment=Switch between LAN and Global co-op mode for GTA San Andreas
+Exec=bash -c 'cd "$(dirname "%k")" && ./Switch-Network-Mode.sh'
+Terminal=true
+Categories=Game;
